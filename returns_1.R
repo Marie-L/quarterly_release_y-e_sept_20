@@ -1,6 +1,7 @@
 install.packages("gitignore")
 library(gitignore)
 gi_fetch_templates("R")
+#note: generate personal access token to push repo
 
 
 # load tidyverse and it's libraries
