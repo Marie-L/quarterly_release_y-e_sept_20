@@ -26,8 +26,7 @@ raw_data_1 <- readxl::read_excel("/Users/marie-louise/Documents/sites/quarterly_
 # open file in viewer
 View(raw_data_1)
 
-# clean data
-
+# clean column names (use gsub on work laptop)
 clean_raw_data <- janitor::clean_names(raw_data_1)
 
 # open file in viewer
@@ -36,3 +35,15 @@ View(clean_raw_data)
 # inspect data
 # check column / field names
 names(clean_raw_data)
+
+# filter data
+filtered_data <- clean_raw_data %>%
+  select(quarter,
+         returgn_type_group,
+         return_type,
+         number_of_returns) %>% 
+  filter_all(any_vars(str_detect(.,pattern = ('2010|2011|2012|2013|2014|2015|2016|2017|2018|2019|2020'))))
+
+# View your filtered data 
+View(filtered_data)
+
