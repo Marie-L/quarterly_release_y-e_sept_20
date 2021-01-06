@@ -37,6 +37,7 @@ View(clean_raw_data)
 names(clean_raw_data)
 
 # filter data
+# %>% pipe operator, shortcut = Cmd + Shift + M, to chain sequences together   
 filtered_data <- clean_raw_data %>%
   # select variables / column names
   select(quarter,
