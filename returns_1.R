@@ -50,3 +50,17 @@ filtered_data <- clean_raw_data %>%
 # View filtered data 
 View(filtered_data)
 
+# double check var names
+names(filtered_data)
+
+# Manual checking:
+# for each column/ var except number_of_returns , use unique() to eliminate duplicate values
+# use $ to access var name from inside the list (instead of [1])
+unique(filtered_data$return_type_group)
+unique(filtered_data$quarter)
+
+unique(filtered_data$return_type)
+# In return_type "Non-detained enforced removals" and "Non-detained Enforced removals"
+# are similar except one has a capital E 
+
+
