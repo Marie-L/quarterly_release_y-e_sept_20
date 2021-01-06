@@ -72,13 +72,13 @@ mutated_data <- filtered_data %>%
 # double check, there should be "Non-detained Enforced removals" with 7 other vars
 unique(mutated_data$return_type)
 
-# Find the sum of the each column 
-column_sums <- mutated_data %>% 
+# Find the sum of the 2 columns 
+column_sums_1 <- mutated_data %>% 
   # group_by() to take existing table and group using the defined vars 
   group_by(quarter,return_type_group) %>% 
   # summarise() to group data created by group_by()
   summarise(values = sum(number_of_returns)) 
 
-View(column_sums)
+View(column_sums_1)
  
 
