@@ -63,4 +63,12 @@ unique(filtered_data$return_type)
 # In return_type "Non-detained enforced removals" and "Non-detained Enforced removals"
 # are similar except one has a capital E 
 
+# use mutate(), case_when() vectorises multiple if else statements
+# ~ is used to separate tow arguments in a function
+mutated_data <- filtered_data %>% 
+  mutate(return_type=case_when(return_type=="Non-detained enforced removals" ~ "Non-detained Enforced removals",
+                               TRUE~ return_type))
+
+# double check, there should be only "Non-detained Enforced removals"
+unique(mutated_data$return_type)
 
