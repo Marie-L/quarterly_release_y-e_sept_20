@@ -39,7 +39,7 @@ names(clean_raw_data)
 # filter data
 filtered_data <- clean_raw_data %>%
   select(quarter,
-         returgn_type_group,
+         return_type_group,
          return_type,
          number_of_returns) %>% 
   filter_all(any_vars(str_detect(.,pattern = ('2010|2011|2012|2013|2014|2015|2016|2017|2018|2019|2020'))))
