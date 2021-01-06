@@ -80,5 +80,12 @@ column_sums_1 <- mutated_data %>%
   summarise(values = sum(number_of_returns)) 
 
 View(column_sums_1)
- 
+
+# Find the sum of quarter,return_type
+# return_type is a subset of return_type_group
+column_sums_2 <- mutated_data %>% 
+  group_by(quarter,return_type) %>% 
+  summarise(values = sum(number_of_returns))
+  
+View(column_sums_2)
 
