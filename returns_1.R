@@ -69,6 +69,6 @@ mutated_data <- filtered_data %>%
   mutate(return_type=case_when(return_type=="Non-detained enforced removals" ~ "Non-detained Enforced removals",
                                TRUE~ return_type))
 
-# double check, there should be only "Non-detained Enforced removals"
+# double check, there should be "Non-detained Enforced removals" with 7 other vars
 unique(mutated_data$return_type)
 
