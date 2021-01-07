@@ -100,3 +100,8 @@ new_data <- union(column_sums_1,column_sums_2)
 
 View(new_data)
 
+# spread () to reshape the data and convert the quarter row into a column
+ formatted_data <- new_data %>% 
+   spread(quarter, values)
+ View(formatted_data)
+
