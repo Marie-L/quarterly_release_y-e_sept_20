@@ -72,12 +72,16 @@ mutated_data <- filtered_data %>%
 # double check, there should be "Non-detained Enforced removals" with 7 other vars
 unique(mutated_data$return_type)
 
-# Find the sum of the 2 columns 
+# Find the sum of the 2 columns
+
+# in the summary tables, two columns / vars have been merged together (return_type_group and return_type )
 column_sums_1 <- mutated_data %>% 
   # group_by() to take existing table and group using the defined vars 
   group_by(quarter,return_type_group) %>% 
   # summarise() to group data created by group_by()
-  summarise(values = sum(number_of_returns)) 
+  summarise(values = sum(number_of_returns)) %>% 
+  # Rename the label return_type_group to row_labels
+  rename(row_labels = return_type_group)
 
 View(column_sums_1)
 
@@ -85,7 +89,14 @@ View(column_sums_1)
 # return_type is a subset of return_type_group
 column_sums_2 <- mutated_data %>% 
   group_by(quarter,return_type) %>% 
-  summarise(values = sum(number_of_returns))
-  
+  summarise(values = sum(number_of_returns)) %>% 
+  # Rename the label return_type to row_labels
+  rename(row_labels= return_type)
+
 View(column_sums_2)
+
+#combine both data sets
+new_data <- union(column_sums_1,column_sums_2)
+
+View(new_data)
 
