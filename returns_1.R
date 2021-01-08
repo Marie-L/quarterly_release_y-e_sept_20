@@ -4,12 +4,16 @@ library(gitignore)
 gi_fetch_templates("R")
 #note: generate personal access token to push repo
 
+install.packages("writexl")
+
 # load tidyverse and it's libraries
 library(tidyverse)
 library(readxl)
 library(dplyr)
 
 library(tidyr)
+
+library(writexl) 
 
 # for data cleaning
 library(janitor)
@@ -83,14 +87,14 @@ names(mutated_data)
 
 View(mutated_data)
 
-# filter
+# filter 1
 filter_1 <- mutated_data %>% 
   select( quarter,return_type_group, number_of_returns) %>% 
   group_by(quarter,return_type_group) %>% 
 summarise(Total = sum(number_of_returns))
 
 View(filter_1)
-# Find the sum of the 2 columns
+
 
 # in the summary tables, two columns / vars have been merged together (return_type_group and return_type )
 column_sums_1 <- mutated_data %>% 
@@ -124,8 +128,9 @@ View(new_data)
  
  View(formatted_data)
  
-# assisted returns
-# formatted_data$row_labels[1]
+
+# export the data
+write_xlsx(formatted_data, "summary_data_R.xlsx") 
 
 
 
