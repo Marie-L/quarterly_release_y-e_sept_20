@@ -9,6 +9,8 @@ library(tidyverse)
 library(readxl)
 library(dplyr)
 
+library(tidyr)
+
 # for data cleaning
 library(janitor)
 
@@ -72,6 +74,22 @@ mutated_data <- filtered_data %>%
 # double check, there should be "Non-detained Enforced removals" with 7 other vars
 unique(mutated_data$return_type)
 
+dplyr::count(mutated_data, return_type[1], sort = TRUE)
+
+dplyr::summarise(.data = mutated_data,
+                 total_rows = sum(return_type, na.rm = TRUE))
+# check names
+names(mutated_data)
+
+View(mutated_data)
+
+# filter
+filter_1 <- mutated_data %>% 
+  select( quarter,return_type_group, number_of_returns) %>% 
+  group_by(quarter,return_type_group) %>% 
+summarise(Total = sum(number_of_returns))
+
+View(filter_1)
 # Find the sum of the 2 columns
 
 # in the summary tables, two columns / vars have been merged together (return_type_group and return_type )
@@ -95,13 +113,26 @@ column_sums_2 <- mutated_data %>%
 
 View(column_sums_2)
 
-#combine both data sets
+# combine both data sets
 new_data <- union(column_sums_1,column_sums_2)
 
 View(new_data)
 
-# spread () to reshape the data and convert the quarter row into a column
+# spread() to reshape the data and convert the quarter row into a column
  formatted_data <- new_data %>% 
    spread(quarter, values)
+ 
  View(formatted_data)
+ 
+# assisted returns
+# formatted_data$row_labels[1]
 
+
+
+
+
+
+
+
+
+   
